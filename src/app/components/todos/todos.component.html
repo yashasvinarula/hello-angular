@@ -1,0 +1,7 @@
+<div *ngFor="let task of tasks">
+  <app-todo 
+    [task]="task" 
+    (changeTaskStatus)="changeTaskStatus($event)"
+    (deleteTask)="deleteTask($event)"
+  ></app-todo>
+</div>

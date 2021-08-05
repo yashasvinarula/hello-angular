@@ -1,0 +1,64 @@
+<div class="ui form" style="margin-top: 40px;">
+  <div class="fields">
+    <div class="eight wide field">
+      <label>Enter your task</label>
+      <input 
+        type="text"
+        placeholder="Task of the day..."
+        [(ngModel)] = "task.text"
+        *ngIf="!editMode"
+      />
+      <input 
+        type="text"
+        placeholder="Task of the day..."
+        [(ngModel)] = "currentTask.text"
+        *ngIf="editMode"
+      />
+    </div>
+    
+    <div class="four wide field">
+      <label>Priority</label>
+      <select class="ui dropdown" [(ngModel)]="task.priority" *ngIf="!editMode">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <select class="ui dropdown" [(ngModel)]="currentTask.priority" *ngIf="editMode">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+  
+    <div class="four wide field" *ngIf="editMode !== true">
+      <label style="visibility: hidden;">.</label>
+      <button 
+        class="ui fluid primary button"
+        [disabled] = "task.text.trim().length === 0"
+        (click) = "handleSubmit()"
+      >
+        Submit
+      </button>
+    </div>
+    <div class="two wide field" *ngIf="editMode === true">
+      <label style="visibility: hidden;">.</label>
+      <button 
+        class="ui fluid orange button"
+        [disabled] = "currentTask.text.trim().length === 0"
+        (click) = "handleUpdate()"
+        *ngIf="editMode === true"
+      >
+        Save Changes
+      </button>
+    </div>
+    <div class="two wide field" *ngIf="editMode === true">
+      <label style="visibility: hidden;">.</label>
+      <button
+        class="ui red fluid button"
+        (click) = "handleCancel()"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div 
+  class="ui icon message" 
+  style="margin: 20px 0"
+  [ngStyle] = "{
+    'opacity': task.completed ? 0.5 : 1
+  }"
+>
+  <i class="tasks icon"></i>
+  <div class="content">
+    <i 
+      class="trash icon" 
+      style="float: right; cursor: pointer"
+      (click)="delete(task.id)"
+    ></i>
+    <i 
+      class="edit icon" 
+      style="float: right; cursor: pointer"
+      (click)="enableEdit(task.id, true)"
+    ></i>
+    <i 
+      style="float: right; cursor: pointer"
+      [ngClass] = "task.completed ? 'lock open icon' : 'lock icon'"
+      (click)="changeStatus(task.id)"
+    >
+    </i>
+    <div 
+      class="header" 
+      style="text-transform: capitalize;"
+      [ngStyle]="{
+        'text-decoration': task.completed ? 'line-through' : ''
+      }"
+    >
+      {{task.text}}
+    </div>
+    <p>
+      Priority: <b>{{task.priority}}</b>
+      <span style="float: right;">
+        Created On: {{task.createdOn | date}}
+      </span>
+    </p>
+  </div>
+</div>
